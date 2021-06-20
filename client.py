@@ -1,6 +1,7 @@
 import socket
 
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QPixmap
 import sys
 
 class Window(QMainWindow):
@@ -23,7 +24,7 @@ class Window(QMainWindow):
         self.label = QLabel(self)
         self.label.move(20, 120)
         self.label.resize(300,500)
-        self.label.setText('Stuff is in this box')
+        self.label.setText('From Server')
         self.label.setStyleSheet("background-color: black; color: white")
 
 
@@ -32,12 +33,15 @@ class Window(QMainWindow):
         button.clicked.connect(self.connectToServer)
         self.show()
 
-    def changeLabelText(self, text):
-        self.label.setText(text)
-    #
-    # def addMessage(self, text):
-    #     self.messageList.append(text)
-    #     self.changeLabelText()
+    def changeLabel(self, content):
+        try:
+            content.decode("utf-8")
+            self.label.setText(content.decode())
+        except:
+            image = open('sent_img.png', 'wb')
+            image.write(content)
+            image.close()
+            self.label.setPixmap(QPixmap("sent_img.png"))
 
     def connectToServer(self, data):
         HOST, PORT = "192.168.0.3", 9999
@@ -50,10 +54,10 @@ class Window(QMainWindow):
             sock.sendall(bytes(data + "\n", "utf-8"))
 
             # Receive data from the server and shut down
-            received = str(sock.recv(1024), "utf-8")
+            received = sock.recv(2048)
 
         print("Sent:     {}".format(data))
-        self.changeLabelText(received)
+        self.changeLabel(received)
 
 
 def main():

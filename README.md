@@ -1,38 +1,47 @@
 # Overview
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
 
-{Provide a description the networking program that you wrote. Describe how to use your software.  If you did Client/Server, then you will need to describe how to start both.}
+By building this project I hoped to learn more about networking and how it can be accomplished in Python using a client server model.
 
-{Describe your purpose for writing this software.}
+This program contains both a server and a client that has a gui. The client can send messages to the server and the server can respond with a custom message. If the client sends "dog" or "cat" then an image will be served up respectively.
+
+To start the programs cd to the directory holding these files and type `Python3 server.py` to start the server and then `Python3 client.py` to start the client.
+PyQt5 needs to be installed. You can do this with `pip3 install pyqt5`
+
+This software was purely for learning purposes
 
 {Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running (you will need to show two pieces of software running and communicating with each other) and a walkthrough of the code.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/Nnio1nj1NNc)
 
 # Network Communication
 
-{Describe the architecture that you used (client/server or peer-to-peer)}
 
-{Identify if you are using TCP or UDP and what port numbers are used.}
+The architecture of this project is client/server and was accomplished by using python socketserver and socket.
+It establishes a TCP connection from server to client and sends data as bytes over the socket stream.
 
-{Identify the format of messages being sent between the client and server or the messages sent between two peers.}
 
 # Development Environment
 
 {Describe the tools that you used to develop the software}
+Developed in Atom IDE
+Written in Python 3
+Libraries
+ - socketserver
+ - socket
+ - pyqt5 for gui
 
-{Describe the programming language that you used and any libraries.}
+Ubuntu vm running in Virtualbox for better understanding
 
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [socketserver documentation](https://docs.python.org/3/library/socketserver.html#module-socketserver)
+* [QT documentation](https://doc.qt.io/qtforpython/)
 
 # Future Work
 
 {Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+* Scrolling message view in GUI
+* Serve message to separate client
+* Better GUI
